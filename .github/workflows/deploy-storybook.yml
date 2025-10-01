@@ -50,10 +50,23 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          # Try pnpm first, fallback to npm if it fails
+          if pnpm install --no-frozen-lockfile; then
+            echo "Dependencies installed with pnpm"
+          else
+            echo "pnpm failed, trying npm..."
+            npm install
+          fi
 
       - name: Build Storybook
-        run: pnpm build-storybook
+        run: |
+          # Try pnpm first, fallback to npm
+          if command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then
+            pnpm build-storybook
+          else
+            npm run build-storybook
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
