@@ -11,10 +11,9 @@ const config: StorybookConfig = {
     
     // Solusi untuk Fix Deployment di GitHub Pages
     viteFinal: async (config: UserConfig) => {
-        // Menetapkan 'base' agar semua aset (termasuk modul dinamis)
-        // dimuat menggunakan jalur sub-direktori yang benar di GitHub Pages.
-        // Penambahan 'config: UserConfig' memastikan Vite config memiliki tipe yang benar.
-        config.base = '/gwind-ui/'; 
+        // Mengubah dari path absolute (/gwind-ui/) ke path relatif ('./')
+        // Path relatif seringkali lebih andal untuk hosting di sub-direktori seperti GitHub Pages.
+        config.base = './'; 
         return config;
     },
 }
