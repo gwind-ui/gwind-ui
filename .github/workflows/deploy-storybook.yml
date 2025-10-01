@@ -26,67 +26,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use existing Storybook build
-        run: |
-          # Check if docs folder has Storybook build
-          if [ -d "docs" ] && [ -f "docs/index.html" ]; then
-            echo "✅ Found existing Storybook build in docs folder"
-            # Copy docs to storybook-static for deployment
-            cp -r docs storybook-static
-            echo "📁 Copied docs to storybook-static for deployment"
-          else
-            echo "❌ No Storybook build found in docs folder"
-            echo "Creating placeholder..."
-            mkdir -p storybook-static
-            cat > storybook-static/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>Gwind UI - Component Library</title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-              body { 
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                margin: 0; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white; text-align: center; min-height: 100vh; display: flex;
-                flex-direction: column; justify-content: center; align-items: center;
-              }
-              .container { max-width: 600px; }
-              h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
-              p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.6; }
-              .status { 
-                background: rgba(255,255,255,0.1); 
-                padding: 32px; 
-                border-radius: 16px; 
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.2);
-              }
-              .status h3 { margin-top: 0; }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <h1>🎨 Gwind UI</h1>
-              <p>Modern Vue 3 UI Component Library with Tailwind CSS</p>
-              <div class="status">
-                <h3>📦 Build Not Found</h3>
-                <p>The Storybook build was not found in the docs folder.</p>
-                <p>Please ensure your Storybook is built and committed to the repository.</p>
-              </div>
-            </div>
-          </body>
-          </html>
-          EOF
-          fi
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
-      - name: List contents for debugging
+      - name: Install dependencies
         run: |
-          echo "📂 Repository contents:"
-          ls -la
-          echo ""
-          echo "📂 Deployment folder contents:"
+          # Clear npm cache and install
+          npm cache clean --force
+          npm install --legacy-peer-deps --no-audit --progress=false
+
+      - name: Rebuild Storybook with correct base path
+        run: |
+          echo "🔨 Building Storybook with GitHub Pages configuration..."
+          # Remove existing docs folder to force fresh build
+          rm -rf docs storybook-static
+          
+          # Build storybook with production config (will use /gwind-ui/ base path)
+          npm run build-storybook
+          
+          echo "✅ Storybook built successfully"
+
+      - name: Verify build
+        run: |
+          echo "📂 Build output:"
           ls -la storybook-static/
+          echo ""
+          echo "� Checking for assets:"
+          ls -la storybook-static/assets/ | head -10
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
