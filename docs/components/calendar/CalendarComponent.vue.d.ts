@@ -13,6 +13,6 @@ declare const _default: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {
 }>, {
     modelValue: DateValue | DateValue[];
     placeholder: DateValue;
-    weekdayFormat: "narrow" | "short" | "long";
+    weekdayFormat: import('reka-ui/date').WeekDayFormat;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 export default _default;

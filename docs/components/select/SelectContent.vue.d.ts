@@ -14,15 +14,11 @@ declare function __VLS_template(): {
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     escapeKeyDown: (event: KeyboardEvent) => any;
-    pointerDownOutside: (event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }>) => any;
+    pointerDownOutside: (event: import('reka-ui').PointerDownOutsideEvent) => any;
     closeAutoFocus: (event: Event) => any;
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onEscapeKeyDown?: ((event: KeyboardEvent) => any) | undefined;
-    onPointerDownOutside?: ((event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }>) => any) | undefined;
+    onPointerDownOutside?: ((event: import('reka-ui').PointerDownOutsideEvent) => any) | undefined;
     onCloseAutoFocus?: ((event: Event) => any) | undefined;
 }>, {
     position: "item-aligned" | "popper";

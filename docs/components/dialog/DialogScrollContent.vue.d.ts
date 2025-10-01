@@ -14,32 +14,16 @@ declare function __VLS_template(): {
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     escapeKeyDown: (event: KeyboardEvent) => any;
-    pointerDownOutside: (event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }>) => any;
-    focusOutside: (event: CustomEvent<{
-        originalEvent: FocusEvent;
-    }>) => any;
-    interactOutside: (event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }> | CustomEvent<{
-        originalEvent: FocusEvent;
-    }>) => any;
+    pointerDownOutside: (event: import('reka-ui').PointerDownOutsideEvent) => any;
+    focusOutside: (event: import('reka-ui').FocusOutsideEvent) => any;
+    interactOutside: (event: import('reka-ui').PointerDownOutsideEvent | import('reka-ui').FocusOutsideEvent) => any;
     openAutoFocus: (event: Event) => any;
     closeAutoFocus: (event: Event) => any;
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onEscapeKeyDown?: ((event: KeyboardEvent) => any) | undefined;
-    onPointerDownOutside?: ((event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }>) => any) | undefined;
-    onFocusOutside?: ((event: CustomEvent<{
-        originalEvent: FocusEvent;
-    }>) => any) | undefined;
-    onInteractOutside?: ((event: CustomEvent<{
-        originalEvent: PointerEvent;
-    }> | CustomEvent<{
-        originalEvent: FocusEvent;
-    }>) => any) | undefined;
+    onPointerDownOutside?: ((event: import('reka-ui').PointerDownOutsideEvent) => any) | undefined;
+    onFocusOutside?: ((event: import('reka-ui').FocusOutsideEvent) => any) | undefined;
+    onInteractOutside?: ((event: import('reka-ui').PointerDownOutsideEvent | import('reka-ui').FocusOutsideEvent) => any) | undefined;
     onOpenAutoFocus?: ((event: Event) => any) | undefined;
     onCloseAutoFocus?: ((event: Event) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;

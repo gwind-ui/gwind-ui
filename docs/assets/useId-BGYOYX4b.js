@@ -1,1 +1,0 @@
-import{v as r,u as n}from"./vue.esm-bundler-DAoQZYEK.js";import{i as s}from"./ConfigProvider-DRoX-YQM.js";let u=0;function I(i,e="reka"){var o;const t=s({useId:void 0});return Object.hasOwn(r,"useId")?`${e}-${(o=n)==null?void 0:o()}`:t.useId?`${e}-${t.useId()}`:`${e}-${++u}`}export{I as u};
