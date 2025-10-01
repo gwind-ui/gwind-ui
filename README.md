@@ -97,7 +97,7 @@ Setelah perubahan ini, Storybook akan:
 - ✅ Load dengan benar di GitHub Pages
 - ✅ Asset dan module imports akan berfungsi
 - ✅ Deployment otomatis ketika push ke main branch
-- ✅ URL stabil di `https://[username].github.io/gwind-ui/`
+- ✅ URL stabil di `https://gwind-ui.github.io/gwind-ui/`
 - ✅ Fallback support jika ada masalah dengan package manager
 
 ## 🔧 Error yang Diperbaiki

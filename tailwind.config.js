@@ -1,11 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./stories/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+import { gwindTheme, gwindTwBase } from "@pegadaian/gwind"
+
+module.exports = {
+    content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    theme: {
+        ...gwindTheme,
+    },
+    plugins: [gwindTwBase],
 }

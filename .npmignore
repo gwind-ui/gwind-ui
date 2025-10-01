@@ -1,0 +1,9 @@
+# Exclude everything
+*
+
+# Include specific directories
+!/lib
+
+# If you have additional files to include like README, package.json, etc.
+!/README.md
+!/package.json
