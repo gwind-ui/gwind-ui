@@ -1,1 +1,31 @@
-"use strict";(self.webpackChunk_pegadaian_gwind_ui=self.webpackChunk_pegadaian_gwind_ui||[]).push([[95],{"./node_modules/.pnpm/@mdx-js+react@3.1.1_@types+react@19.1.15_react@19.1.1/node_modules/@mdx-js/react/index.js":(__unused_webpack_module,__webpack_exports__,__webpack_require__)=>{__webpack_require__.d(__webpack_exports__,{MDXProvider:()=>MDXProvider});var react=__webpack_require__("./node_modules/.pnpm/react@19.1.1/node_modules/react/index.js");const emptyComponents={},MDXContext=react.createContext(emptyComponents);function MDXProvider(properties){let allComponents;return allComponents=properties.disableParentContext?"function"==typeof properties.components?properties.components(emptyComponents):properties.components||emptyComponents:function useMDXComponents(components){const contextComponents=react.useContext(MDXContext);return react.useMemo(function(){return"function"==typeof components?components(contextComponents):{...contextComponents,...components}},[contextComponents,components])}(properties.components),react.createElement(MDXContext.Provider,{value:allComponents},properties.children)}}}]);
+"use strict"
+;(self.webpackChunk_pegadaian_gwind_ui = self.webpackChunk_pegadaian_gwind_ui || []).push([
+    [95],
+    {
+        "./node_modules/.pnpm/@mdx-js+react@3.1.1_@types+react@19.1.15_react@19.1.1/node_modules/@mdx-js/react/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            __webpack_require__.d(__webpack_exports__, { MDXProvider: () => MDXProvider })
+            var react = __webpack_require__("./node_modules/.pnpm/react@19.1.1/node_modules/react/index.js")
+            const emptyComponents = {},
+                MDXContext = react.createContext(emptyComponents)
+            function MDXProvider(properties) {
+                let allComponents
+                return (
+                    (allComponents = properties.disableParentContext
+                        ? "function" == typeof properties.components
+                            ? properties.components(emptyComponents)
+                            : properties.components || emptyComponents
+                        : (function useMDXComponents(components) {
+                              const contextComponents = react.useContext(MDXContext)
+                              return react.useMemo(
+                                  function () {
+                                      return "function" == typeof components ? components(contextComponents) : { ...contextComponents, ...components }
+                                  },
+                                  [contextComponents, components]
+                              )
+                          })(properties.components)),
+                    react.createElement(MDXContext.Provider, { value: allComponents }, properties.children)
+                )
+            }
+        },
+    },
+])
