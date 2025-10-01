@@ -1,0 +1,14 @@
+<script setup lang="ts">
+/* eslint-disable */
+import type { HTMLAttributes } from "vue"
+import { cn } from "../utils"
+import { SelectLabel, type SelectLabelProps } from "reka-ui"
+
+const props = defineProps<SelectLabelProps & { class?: HTMLAttributes["class"] }>()
+</script>
+
+<template>
+    <SelectLabel :class="cn('py-1.5 pl-8 pr-2 text-sm font-semibold', props.class)">
+        <slot />
+    </SelectLabel>
+</template>

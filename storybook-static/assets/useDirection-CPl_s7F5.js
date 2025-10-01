@@ -1,0 +1,1 @@
+import{r,c as n}from"./vue.esm-bundler-DAoQZYEK.js";import{i as c}from"./ConfigProvider-DRoX-YQM.js";function a(t){const e=c({dir:r("ltr")});return n(()=>{var o;return(t==null?void 0:t.value)||((o=e.dir)==null?void 0:o.value)||"ltr"})}export{a as u};

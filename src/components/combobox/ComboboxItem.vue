@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import type { ComboboxItemEmits, ComboboxItemProps } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { reactiveOmit } from "@vueuse/core"
+import { ComboboxItem, useForwardPropsEmits } from "reka-ui"
+import { cn } from "../utils"
+
+const props = defineProps<ComboboxItemProps & { class?: HTMLAttributes["class"] }>()
+const emits = defineEmits<ComboboxItemEmits>()
+
+const delegatedProps = reactiveOmit(props, "class")
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
+</script>
+
+<template>
+    <ComboboxItem
+        data-slot="combobox-item"
+        v-bind="forwarded"
+        :class="
+            cn(
+                `
+      data-[highlighted]:cursor-pointer [&_svg:not([class*='text-'])]:text-black-800 !text-omicron font-regular relative flex items-center gap-2 py-4 border-b border-black-200 outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`,
+                props.class
+            )
+        "
+    >
+        <slot />
+    </ComboboxItem>
+</template>

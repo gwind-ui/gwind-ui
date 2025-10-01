@@ -1,0 +1,26 @@
+.g-icon{
+  color: green;
+}
+
+.g-icon-lg{
+  width:64px;
+  height:64px;
+}
+
+.g-icon-sm{
+  width:20px;
+  height:20px;
+}
+
+.g-icon-md{
+  width:24px;
+  height:24px;
+}
+
+.text-primary{
+  color: limegreen;
+}
+
+.text-secondary{
+  color: yellow;
+}

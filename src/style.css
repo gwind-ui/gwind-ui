@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700,800") layer(base);
+
+@import "tailwindcss";
+
+@config '../tailwind.config.js';
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
