@@ -1,0 +1,43 @@
+{
+  "name": "gwind-ui",
+  "version": "1.0.0",
+  "description": "Modern Vue 3 UI Component Library with Tailwind CSS",
+  "private": true,
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "serve-storybook": "npx http-server storybook-static",
+    "deploy": "pnpm build-storybook && gh-pages -d storybook-static"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui",
+    "components",
+    "tailwind",
+    "storybook"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-docs": "^7.6.0",
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-interactions": "^7.6.0",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.0",
+    "@storybook/test": "^7.6.0",
+    "@storybook/vue3": "^7.6.0",
+    "@storybook/vue3-vite": "^7.6.0",
+    "@chromatic-com/storybook": "^1.9.0",
+    "storybook": "^7.6.0",
+    "storybook-addon-vue-slots": "^1.0.0",
+    "vue": "^3.4.0",
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0",
+    "gh-pages": "^6.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "packageManager": "pnpm@8.0.0"
+}
