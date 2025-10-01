@@ -26,51 +26,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Clear npm cache
-        run: npm cache clean --force
-
-      - name: Install dependencies with retry
+      - name: Use existing Storybook build
         run: |
-          # Try npm install with retries and different configurations
-          for i in {1..3}; do
-            echo "Attempt $i: Installing dependencies..."
-            if npm install --legacy-peer-deps --no-audit --progress=false; then
-              echo "Dependencies installed successfully on attempt $i"
-              break
-            else
-              echo "Install failed on attempt $i, retrying..."
-              sleep 10
-              npm cache clean --force
-              rm -rf node_modules package-lock.json
-            fi
-          done
-
-      - name: Verify Storybook installation
-        run: |
-          if ! npx storybook --version; then
-            echo "Storybook not found, installing minimal setup..."
-            npm install --save-dev @storybook/vue3-vite@^8.0.0 storybook@^8.0.0 --legacy-peer-deps
-          fi
-
-      - name: Build Storybook
-        run: |
-          # Try building storybook
-          if npm run build-storybook; then
-            echo "Storybook built successfully"
+          # Check if docs folder has Storybook build
+          if [ -d "docs" ] && [ -f "docs/index.html" ]; then
+            echo "✅ Found existing Storybook build in docs folder"
+            # Copy docs to storybook-static for deployment
+            cp -r docs storybook-static
+            echo "📁 Copied docs to storybook-static for deployment"
           else
-            echo "Build failed, creating minimal static site..."
+            echo "❌ No Storybook build found in docs folder"
+            echo "Creating placeholder..."
             mkdir -p storybook-static
             cat > storybook-static/index.html << 'EOF'
           <!DOCTYPE html>
           <html>
           <head>
             <title>Gwind UI - Component Library</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
               body { 
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -79,25 +53,40 @@ jobs:
                 flex-direction: column; justify-content: center; align-items: center;
               }
               .container { max-width: 600px; }
-              h1 { font-size: 3rem; margin-bottom: 1rem; }
-              p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
-              .status { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; }
+              h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
+              p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.6; }
+              .status { 
+                background: rgba(255,255,255,0.1); 
+                padding: 32px; 
+                border-radius: 16px; 
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+              }
+              .status h3 { margin-top: 0; }
             </style>
           </head>
           <body>
             <div class="container">
-              <h1>🚧 Gwind UI</h1>
-              <p>Modern Vue 3 UI Component Library</p>
+              <h1>🎨 Gwind UI</h1>
+              <p>Modern Vue 3 UI Component Library with Tailwind CSS</p>
               <div class="status">
-                <h3>⚙️ Currently Building</h3>
-                <p>Storybook is being set up for this component library.</p>
-                <p>Please check back soon!</p>
+                <h3>📦 Build Not Found</h3>
+                <p>The Storybook build was not found in the docs folder.</p>
+                <p>Please ensure your Storybook is built and committed to the repository.</p>
               </div>
             </div>
           </body>
           </html>
           EOF
           fi
+
+      - name: List contents for debugging
+        run: |
+          echo "📂 Repository contents:"
+          ls -la
+          echo ""
+          echo "📂 Deployment folder contents:"
+          ls -la storybook-static/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
