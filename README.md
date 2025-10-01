@@ -70,30 +70,31 @@ npm run serve-storybook
 
 ## 📋 Perubahan yang Dilakukan
 
-1. **`.storybook/main.ts`**: 
-   - ✅ Ditambahkan `viteFinal` untuk konfigurasi base path
-   - ✅ Optimized chunk naming untuk GitHub Pages
+1. **`.storybook/main.ts`**:
+    - ✅ Ditambahkan `viteFinal` untuk konfigurasi base path
+    - ✅ Optimized chunk naming untuk GitHub Pages
 
-2. **`.github/workflows/deploy-storybook.yml`**: 
-   - ✅ GitHub Actions workflow untuk deployment otomatis
-   - ✅ Menggunakan pnpm dengan fallback ke npm
-   - ✅ Deploy ke GitHub Pages
-   - ✅ Error handling yang lebih baik
+2. **`.github/workflows/deploy-storybook.yml`**:
+    - ✅ GitHub Actions workflow untuk deployment otomatis
+    - ✅ Menggunakan pnpm dengan fallback ke npm
+    - ✅ Deploy ke GitHub Pages
+    - ✅ Error handling yang lebih baik
 
-3. **`package.json`**: 
-   - ✅ Script untuk build dan deployment
-   - ✅ Dependencies yang kompatibel (Storybook 8.x)
-   - ✅ Type module support
+3. **`package.json`**:
+    - ✅ Script untuk build dan deployment
+    - ✅ Dependencies yang kompatibel (Storybook 8.x)
+    - ✅ Type module support
 
-4. **`.nojekyll`**: 
-   - ✅ Mencegah Jekyll processing yang dapat merusak asset loading
+4. **`.nojekyll`**:
+    - ✅ Mencegah Jekyll processing yang dapat merusak asset loading
 
 5. **`pnpm-lock.yaml`**:
-   - ✅ Lockfile untuk konsistensi dependencies
+    - ✅ Lockfile untuk konsistensi dependencies
 
 ## 🎯 Hasil
 
 Setelah perubahan ini, Storybook akan:
+
 - ✅ Load dengan benar di GitHub Pages
 - ✅ Asset dan module imports akan berfungsi
 - ✅ Deployment otomatis ketika push ke main branch

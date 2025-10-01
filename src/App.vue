@@ -456,7 +456,7 @@
                     </CardHeader>
                     <CardContent class="flex flex-col gap-y-4">
                         <GInput v-model="progressNumber" id="number" type="number" placeholder="Masukkan Presentase Progress" />
-                        <Progress :max="300" class="bg-black-400" v-model="progressNumber" :getValueLabel="(value) => `${value}% selesai`" :getValueText="(value, max) => `${value} MB dari ${max} MB`"></Progress>
+                        <Progress :max="300" class="bg-black-400" v-model="progressNumber" :getValueLabel="value => `${value}% selesai`" :getValueText="(value, max) => `${value} MB dari ${max} MB`"></Progress>
                         <p class="text-sm text-gray-600">
                             {{ `${progressNumber}% selesai` }}
                         </p>
